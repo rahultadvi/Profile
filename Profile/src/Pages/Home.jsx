@@ -135,7 +135,7 @@ const Home = memo(() => {
               {/* Foreground card – smaller offset on mobile to keep it centered */}
               <div className="absolute inset-0 bg-white rounded-3xl shadow-xl p-6 sm:p-8 flex flex-col items-center justify-center transform -translate-x-2 -translate-y-2 sm:-translate-x-3 sm:-translate-y-3 md:-translate-x-4 md:-translate-y-4 hover:translate-x-0 hover:translate-y-0 transition-transform duration-500">
                 <div className="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-3 sm:mb-4 flex items-center justify-center text-white text-3xl sm:text-4xl md:text-5xl font-bold">
-                  RT
+                  RK
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-800">Rahul Tadvi</h3>
                 <p className="text-sm sm:text-base text-gray-600">Full Stack Developer</p>
