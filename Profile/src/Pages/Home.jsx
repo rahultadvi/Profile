@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-// Animation variants
+// Animation variants (unchanged)
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -26,19 +26,17 @@ const itemVariants = {
 const Home = memo(() => {
   return (
     <div className="relative min-h-screen overflow-hidden bg-gray-50">
-      {/* Animated background elements */}
+      {/* Animated background elements – smaller on mobile */}
       <div className="absolute inset-0 -z-10">
-        {/* Gradient orb 1 */}
-        <div className="absolute top-20 left-10 w-64 h-64 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" />
-        {/* Gradient orb 2 */}
-        <div className="absolute top-40 right-10 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000" />
-        {/* Gradient orb 3 */}
-        <div className="absolute bottom-20 left-1/2 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000" />
+        <div className="absolute top-20 left-10 w-48 h-48 md:w-64 md:h-64 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" />
+        <div className="absolute top-40 right-10 w-56 h-56 md:w-72 md:h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000" />
+        <div className="absolute bottom-20 left-1/2 w-64 h-64 md:w-80 md:h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000" />
       </div>
 
       {/* Main content container */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 min-h-screen flex items-center">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-20 min-h-screen flex items-center">
+        {/* Grid: single column on mobile, two columns on medium+ */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Left column: Text content */}
           <motion.div
             className="text-center md:text-left"
@@ -47,14 +45,14 @@ const Home = memo(() => {
             variants={containerVariants}
           >
             <motion.h1
-              className="text-5xl md:text-6xl font-bold text-gray-900 mb-4"
+              className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-3 md:mb-4"
               variants={itemVariants}
             >
               Hi There,
             </motion.h1>
 
             <motion.h2
-              className="text-4xl md:text-5xl font-bold mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 md:mb-4"
               variants={itemVariants}
             >
               I'm{' '}
@@ -64,7 +62,7 @@ const Home = memo(() => {
             </motion.h2>
 
             <motion.p
-              className="text-xl md:text-2xl text-gray-600 mb-8"
+              className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-6 md:mb-8"
               variants={itemVariants}
             >
               <span className="relative inline-block">
@@ -74,12 +72,12 @@ const Home = memo(() => {
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start"
               variants={itemVariants}
             >
               <Link
                 to="/about"
-                className="group relative px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full overflow-hidden shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+                className="group relative px-6 py-3 sm:px-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full overflow-hidden shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 text-center"
               >
                 <span className="relative z-10">About Me</span>
                 <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
@@ -87,15 +85,15 @@ const Home = memo(() => {
 
               <a
                 href="#contact"
-                className="px-8 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-full hover:border-blue-600 hover:text-blue-600 transform hover:-translate-y-1 transition-all duration-300"
+                className="px-6 py-3 sm:px-8 border-2 border-gray-300 text-gray-700 font-semibold rounded-full hover:border-blue-600 hover:text-blue-600 transform hover:-translate-y-1 transition-all duration-300 text-center"
               >
                 Contact Me
               </a>
             </motion.div>
 
-            {/* Social links */}
+            {/* Social links – centered on mobile */}
             <motion.div
-              className="flex gap-4 mt-8 justify-center md:justify-start"
+              className="flex gap-6 mt-8 justify-center md:justify-start"
               variants={itemVariants}
             >
               {['linkedin', 'github', 'twitter'].map((platform) => (
@@ -104,12 +102,11 @@ const Home = memo(() => {
                   href={`https://${platform}.com/rahultadvi`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-500 hover:text-blue-600 transition-colors duration-300"
+                  className="text-gray-500 hover:text-blue-600 transition-colors duration-300 p-2 -m-2"
                   aria-label={platform}
                 >
                   <span className="sr-only">{platform}</span>
-                  {/* Simple SVG icons – replace with your preferred icon set */}
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-8 h-8 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
                     {platform === 'linkedin' && (
                       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451c.979 0 1.771-.773 1.771-1.729V1.729C24 .774 23.204 0 22.225 0z" />
                     )}
@@ -125,26 +122,27 @@ const Home = memo(() => {
             </motion.div>
           </motion.div>
 
-          {/* Right column: Illustration */}
+          {/* Right column: Illustration – visible on all screens, centered on mobile */}
           <motion.div
-            className="relative hidden md:block"
+            className="relative block"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
-            <div className="relative w-full h-96">
-              {/* Main illustration card */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500" />
-              <div className="absolute inset-0 bg-white rounded-3xl shadow-xl p-8 flex flex-col items-center justify-center transform -translate-x-4 -translate-y-4 hover:translate-x-0 hover:translate-y-0 transition-transform duration-500">
-                <div className="w-32 h-32 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-4 flex items-center justify-center text-white text-5xl font-bold">
+            <div className="relative w-full h-64 sm:h-80 md:h-96">
+              {/* Background tilt – smaller rotation on mobile */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl shadow-2xl transform rotate-2 md:rotate-3 hover:rotate-0 transition-transform duration-500" />
+              {/* Foreground card – smaller offset on mobile to keep it centered */}
+              <div className="absolute inset-0 bg-white rounded-3xl shadow-xl p-6 sm:p-8 flex flex-col items-center justify-center transform -translate-x-2 -translate-y-2 sm:-translate-x-3 sm:-translate-y-3 md:-translate-x-4 md:-translate-y-4 hover:translate-x-0 hover:translate-y-0 transition-transform duration-500">
+                <div className="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-3 sm:mb-4 flex items-center justify-center text-white text-3xl sm:text-4xl md:text-5xl font-bold">
                   RT
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800">Rahul Tadvi</h3>
-                <p className="text-gray-600">Full Stack Developer</p>
-                <div className="flex gap-2 mt-4">
-                  <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">React</span>
-                  <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">Node.js</span>
-                  <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">Python</span>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-800">Rahul Tadvi</h3>
+                <p className="text-sm sm:text-base text-gray-600">Full Stack Developer</p>
+                <div className="flex flex-wrap gap-2 mt-3 sm:mt-4 justify-center">
+                  <span className="px-2 sm:px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs sm:text-sm">React</span>
+                  <span className="px-2 sm:px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs sm:text-sm">Node.js</span>
+                  <span className="px-2 sm:px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs sm:text-sm">Python</span>
                 </div>
               </div>
             </div>
@@ -152,9 +150,9 @@ const Home = memo(() => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator – extra bottom margin on mobile */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, repeat: Infinity, duration: 1, repeatType: 'reverse' }}
