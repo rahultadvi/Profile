@@ -6,8 +6,8 @@ const experienceData = [
   {
     id: 1,
     role: 'Full Stack Developer Intern',
-    company: 'TechCorp Solutions',
-    location: 'Mumbai, India',
+    company: 'Zantatech solutions',
+    location: 'Ahemdabad, India',
     period: 'June 2023 – August 2023',
     description:
       'Worked on developing and maintaining full-stack web applications using the MERN stack. Collaborated with the team to implement new features and improve performance.',
@@ -38,8 +38,8 @@ const experienceData = [
   {
     id: 3,
     role: 'Teaching Assistant (Web Development)',
-    company: 'VJTI Mumbai',
-    location: 'Mumbai, India',
+    company: 'ERP Institute of Technology',
+    location: 'Ahemdabad, India',
     period: 'Jan 2023 – May 2023',
     description:
       'Assisted professors in conducting web development labs and mentoring students.',

@@ -4,9 +4,9 @@ import { useState, memo } from 'react';
 const CONTACT_INFO = {
   name: 'Rahul Tadvi',
   role: 'Full Stack Developer',
-  email: 'rahul.tadvi@example.com',
-  phone: '+91 98765 43210',
-  location: 'Mumbai, India',
+  email: 'rahultadvi8143@gmail.com',
+  phone: '+91 90163 94292',
+  location: 'Ahemdabad, India',
   social: {
     linkedin: 'https://linkedin.com/in/rahultadvi',
     github: 'https://github.com/rahultadvi',
