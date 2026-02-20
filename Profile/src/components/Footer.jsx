@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
+import { motion } from 'framer-motion';
 
 const Footer = memo(() => {
   const currentYear = new Date().getFullYear();
@@ -53,88 +54,213 @@ const Footer = memo(() => {
   ];
 
   return (
-    <footer className="bg-gray-900 text-white pt-12 pb-6">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          {/* Brand */}
-          <div className="col-span-1 md:col-span-2">
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-3">
+    <footer className="relative bg-gradient-to-b from-gray-900 to-gray-950 text-white pt-16 pb-8 overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-20 left-10 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse animation-delay-2000" />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Main grid - responsive */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 mb-12">
+          {/* Brand section - wider on mobile */}
+          <div className="md:col-span-5 text-center md:text-left">
+            <motion.h3
+              className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
               Rahul Tadvi
-            </h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Full Stack Developer passionate about building scalable web applications and solving real-world problems with clean, efficient code.
-            </p>
+            </motion.h3>
+            <motion.p
+              className="text-gray-400 text-sm leading-relaxed max-w-md mx-auto md:mx-0"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              Full Stack Developer passionate about building scalable web applications 
+              and solving real-world problems with clean, efficient code.
+            </motion.p>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-3 text-white">Quick Links</h4>
-            <ul className="space-y-2">
-              {quickLinks.map(({ to, label }) => (
-                <li key={to}>
+          <div className="md:col-span-3 text-center md:text-left">
+            <motion.h4
+              className="text-lg font-semibold mb-4 text-white/90 border-b border-white/10 pb-2 inline-block"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              Quick Links
+            </motion.h4>
+            <ul className="space-y-3">
+              {quickLinks.map(({ to, label }, index) => (
+                <motion.li
+                  key={to}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: 0.3 + index * 0.05 }}
+                >
                   <ScrollLink
                     to={to}
                     spy={true}
                     smooth={true}
                     duration={500}
-                    offset={-70} // Adjust for navbar height
-                    className="text-gray-400 hover:text-blue-400 cursor-pointer transition-colors text-sm"
+                    offset={-70}
+                    className="text-gray-400 hover:text-blue-400 cursor-pointer transition-all duration-300 text-sm inline-block hover:translate-x-1"
+                    activeClass="text-blue-400"
                   >
                     {label}
                   </ScrollLink>
-                </li>
+                </motion.li>
               ))}
             </ul>
           </div>
 
-          {/* Connect */}
-          <div>
-            <h4 className="text-lg font-semibold mb-3 text-white">Connect</h4>
-            <div className="flex space-x-4">
-              {socialLinks.map((social) => (
-                <a
+          {/* Connect & Newsletter */}
+          <div className="md:col-span-4 text-center md:text-left">
+            <motion.h4
+              className="text-lg font-semibold mb-4 text-white/90 border-b border-white/10 pb-2 inline-block"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              Connect
+            </motion.h4>
+            <motion.div
+              className="flex justify-center md:justify-start space-x-5 mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              {socialLinks.map((social, index) => (
+                <motion.a
                   key={social.name}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-blue-400 transition-colors"
+                  className="text-gray-400 hover:text-blue-400 transition-colors relative group"
                   aria-label={social.name}
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
                 >
                   {social.icon}
-                </a>
+                  <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                    {social.name}
+                  </span>
+                </motion.a>
               ))}
-            </div>
+            </motion.div>
+
+            {/* Simple newsletter teaser */}
+            <motion.div
+              className="mt-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <p className="text-sm text-gray-400 mb-2">Stay updated</p>
+              <div className="flex flex-col sm:flex-row gap-2">
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  className="px-4 py-2 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm"
+                />
+                <button className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg text-sm font-medium hover:shadow-lg hover:shadow-blue-600/25 transition-all duration-300 whitespace-nowrap">
+                  Subscribe
+                </button>
+              </div>
+            </motion.div>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-gray-800 pt-6 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-400">
-          <p>© {currentYear} Rahul Tadvi. All rights reserved.</p>
-          <p className="mt-2 sm:mt-0">
+        {/* Divider with gradient */}
+        <motion.div
+          className="h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent my-8"
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        />
+
+        {/* Bottom row */}
+        <div className="flex flex-col sm:flex-row justify-between items-center text-sm text-gray-400">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            © {currentYear} Rahul Tadvi. All rights reserved.
+          </motion.p>
+          <motion.p
+            className="mt-3 sm:mt-0"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
             Built with{' '}
-            <span role="img" aria-label="love">
+            <span role="img" aria-label="love" className="text-red-500 animate-pulse inline-block">
               ❤️
             </span>{' '}
             using React & Tailwind CSS
-          </p>
+          </motion.p>
         </div>
 
-        {/* Back to Top Button */}
-        <div className="text-center mt-6">
+        {/* Back to Top Button - more prominent */}
+        <motion.div
+          className="text-center mt-8"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           <ScrollLink
             to="home"
             spy={true}
             smooth={true}
             duration={500}
-            className="inline-flex items-center text-sm text-gray-400 hover:text-blue-400 cursor-pointer transition-colors"
+            offset={-70}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800/50 hover:bg-gray-800 rounded-full text-sm text-gray-300 hover:text-white border border-gray-700 hover:border-blue-500 transition-all duration-300 group cursor-pointer"
           >
-            <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg
+              className="w-4 h-4 group-hover:-translate-y-1 transition-transform"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
             </svg>
-            Back to Top
+            <span>Back to Top</span>
           </ScrollLink>
-        </div>
+        </motion.div>
       </div>
+
+      {/* Extra mobile spacing */}
+      <style>{`
+        @media (max-width: 640px) {
+          footer .grid {
+            gap: 2rem;
+          }
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+      `}</style>
     </footer>
   );
 });
